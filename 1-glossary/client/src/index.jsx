@@ -26,6 +26,27 @@ const App = () => {
       })
   };
 
+  const editWord = (word) => {
+    var editDef = window.prompt('Edit definition');
+
+    if(editDef !== '') {
+      var wordObj = {word: word, definition: editDef};
+      axios.patch('/glossaries', wordObj)
+        .then((response) => {
+          axios.get('/glossaries')
+            .then((response) => {
+              setWords(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            })
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+  }
+
   const search = (term) => {
     if (term === '') {
       axios.get('/glossaries')
@@ -54,6 +75,7 @@ const App = () => {
       .then ((response) => {
         axios.get('/glossaries')
           .then((response) => {
+            console.log('client > index SUCCESSS');
             setWords(response.data);
           })
           .catch((error) => {
@@ -87,7 +109,7 @@ const App = () => {
         <WordAdd wordAdd={wordAdd} />
       </div>
       <div className='list'>
-        <WordList words={words} deleteWord={deleteWord} />
+        <WordList words={words} deleteWord={deleteWord} editWord={editWord} />
       </div>
     </div>
   );

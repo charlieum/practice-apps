@@ -29,7 +29,18 @@ module.exports = {
       .catch((error) => {
         console.log(error);
       })
+  },
+
+  patchWord: (req, res) => {
+    models.patchWord(req.body)
+    .then((response) => {
+      res.status(200).send();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
+
 
   // getWordSearch: (req, res) =>{
   //   console.log('controllers > getWordSearch');

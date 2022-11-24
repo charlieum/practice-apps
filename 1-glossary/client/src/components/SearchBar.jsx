@@ -11,6 +11,7 @@ const SearchBar = ({search}) => {
 
   const startSearch = () => {
     search(term);
+    setTerm('');
   };
 
   return (

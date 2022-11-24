@@ -3,7 +3,6 @@ const express = require("express");
 const path = require("path");
 const controllers = require('./controllers.js');
 
-
 const app = express();
 
 // Serves up all static and generated assets in ../client/dist.
@@ -16,7 +15,7 @@ app.post('/glossaries', controllers.postWord);
 
 app.delete('/glossaries', controllers.deleteWord);
 
-// app.patch('/glossaries', controllers.patchWord);
+app.patch('/glossaries', controllers.patchWord);
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

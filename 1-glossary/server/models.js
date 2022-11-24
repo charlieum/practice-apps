@@ -16,5 +16,9 @@ module.exports = {
 
   deleteWord: (word) => {
     return db.Glossary.deleteOne({word: word})
+  },
+
+  patchWord: (wordObj) => {
+    return db.Glossary.updateOne({word: wordObj.word}, {definition: wordObj.definition})
   }
 }
