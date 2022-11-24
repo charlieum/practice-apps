@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 const axios = require('axios');
 
 const WordAdd = ({wordAdd}) => {
-  const [word, setWord] = useState('word');
-  const [definition, setDefinition] = useState ('definition');
+  const [word, setWord] = useState('');
+  const [definition, setDefinition] = useState ('');
 
   const onChangeWord = (e) => {
     setWord(e.target.value);
@@ -14,17 +14,25 @@ const WordAdd = ({wordAdd}) => {
   };
 
   const startAdd = () => {
-    wordAdd(word, definition);
+    if (word.length !== 0) {
+      wordAdd(word, definition);
+      setWord('');
+      setDefinition('');
+    }
   }
 
   return (
     <div className='wordAdd'>
       <div>
-        Add new word:
+        <strong>Add to glossary:</strong>
       </div>
-      <input value={word} onChange={onChangeWord} />
-      <input value={definition} onChange={onChangeDef} />
-      <button onClick={startAdd}>Add Word</button>
+      <div><span>Word:</span> <input className='inputWord' value={word} onChange={onChangeWord} /></div>
+      <div>
+        <span>Definition:</span> <input className='inputWord' value={definition} onChange={onChangeDef} />
+      </div>
+      <div>
+        <button onClick={startAdd}><font color='white'><strong>ADD WORD</strong></font></button>
+      </div>
     </div>
   );
 };

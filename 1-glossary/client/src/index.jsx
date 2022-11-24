@@ -8,15 +8,43 @@ const axios = require('axios'); //save
 const App = () => {
   const [words, setWords] = useState([]);
 
+  const deleteWord = (word) => {
+    var wordObj = {params: {word}};
+    axios.delete('/glossaries', wordObj)
+      .then((response) => {
+        axios.get('/glossaries')
+          .then((response) => {
+            setWords(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+      })
+      .catch((error) => {
+        console.log('client > deleteWord: error!')
+        console.log(error);
+      })
+  };
+
   const search = (term) => {
-    // let searchObj = {term: term};
-    // axios.get('/glossaries', searchObj)
-    //   .then ((response) => {
-    //     console.log()
-    //   })
-    //   .catch((error) => {
-    //     xx
-    //   })
+    if (term === '') {
+      axios.get('/glossaries')
+      .then((response) => {
+        setWords(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    } else {
+      var wordObj = {params: {term}};
+      axios.get('/glossaries', wordObj)
+        .then ((response) => {
+          setWords(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
   };
 
   const wordAdd = (word, definition) => {
@@ -24,7 +52,13 @@ const App = () => {
 
     axios.post('/glossaries', wordObj)
       .then ((response) => {
-        console.log('client > wordAdd SUCCESS!');
+        axios.get('/glossaries')
+          .then((response) => {
+            setWords(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
       })
       .catch((error) => {
         console.log(error);
@@ -39,11 +73,11 @@ const App = () => {
       .catch((error) => {
         console.log(error);
       })
-  }, [])
+  }, []);
 
   return (
     <div>
-      <div>
+      <div className='title'>
         <h1>Glossary</h1>
       </div>
       <div className='search'>
@@ -52,9 +86,8 @@ const App = () => {
       <div className='add'>
         <WordAdd wordAdd={wordAdd} />
       </div>
-      <div>
-        List goes here.
-        <WordList words={words}/>
+      <div className='list'>
+        <WordList words={words} deleteWord={deleteWord} />
       </div>
     </div>
   );

@@ -2,9 +2,8 @@ const models = require('./models.js');
 
 module.exports = {
   getWord: (req, res) => {
-    models.getWord()
+    models.getWord(req.query.term)
       .then((response) => {
-        console.log('response: ', response);
         res.status(200).send(response);
       })
       .catch((error) => {
@@ -20,5 +19,20 @@ module.exports = {
       .catch((error) => {
         res.status(400).send(error);
       })
+  },
+
+  deleteWord: (req, res) => {
+    models.deleteWord(req.query.word)
+      .then((response) => {
+        res.status(200).send();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
+
+  // getWordSearch: (req, res) =>{
+  //   console.log('controllers > getWordSearch');
+  //   models.getWordSearch(req.param.word)
+  // }
 }

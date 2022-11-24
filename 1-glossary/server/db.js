@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/words') //original mongoose.connect('mongodb://localhost:27017/words')
+mongoose.connect('mongodb://localhost:27017/words');
 
 const glossSchema = new mongoose.Schema ({
   word: {type: String, unique: true},

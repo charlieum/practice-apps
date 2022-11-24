@@ -7,17 +7,16 @@ const controllers = require('./controllers.js');
 const app = express();
 
 // Serves up all static and generated assets in ../client/dist.
-app.use(express.json()) //double check
-app.use(express.static(path.join(__dirname, "../client/dist"))); //save
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "../client/dist"))); //should lead to index.html page
 
 app.get('/glossaries', controllers.getWord);
 
 app.post('/glossaries', controllers.postWord);
 
-// let port = 3000;
-// app.listen(port, () => {
-//   console.log(`Listening at http://localhost:${port}`)
-// })
+app.delete('/glossaries', controllers.deleteWord);
+
+// app.patch('/glossaries', controllers.patchWord);
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

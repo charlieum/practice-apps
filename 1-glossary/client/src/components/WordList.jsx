@@ -2,15 +2,11 @@ import React from 'react';
 import WordEntry from './WordEntry.jsx';
 
 
-const WordList = ({words}) => {
-
-
-  console.log('words: ', words);
+const WordList = ({words, deleteWord}) => {
   return (
     <div>
       {words.map((word) => {
-        console.log(word);
-        return <WordEntry word={word}/>
+        return <WordEntry word={word} deleteWord={deleteWord} />
       })}
     </div>
   );
