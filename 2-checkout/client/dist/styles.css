@@ -1,10 +1,10 @@
 /**
- * 
+ *
  * Based on Josh Comeau's CSS Reset: https://www.joshwcomeau.com/css/custom-css-reset/.
- * 
+ *
  * Feel free to edit this file as needed.
- * 
- */ 
+ *
+ */
 
 *,
 *::before,
@@ -53,8 +53,39 @@ h6 {
   overflow-wrap: break-word;
 }
 
+h1 {
+  text-align: center;
+  padding: 10px;
+}
+
 main {
   max-width: 840px;
   padding: 16px;
   margin: auto;
 }
+
+.formContainer {
+  margin: 10px;
+  border-style: solid;
+  border-color: black;
+}
+
+.formHeader {
+  background-color: rgb(160, 160, 160);
+  padding: 10px;
+}
+
+.formBody {
+  background-color: rgb(206, 206, 206);
+  padding: 10px;
+}
+
+.formLine {
+  padding: 5px;
+}
+
+span {
+  display: inline-block;
+  width: 150px;
+}
+
