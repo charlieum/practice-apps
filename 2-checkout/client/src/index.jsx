@@ -5,13 +5,14 @@ import Form1 from './components/Form1.jsx';
 import Form2 from './components/Form2.jsx';
 import Form3 from './components/Form3.jsx';
 import Confirmation from './components/Confirmation.jsx';
+import Details from './components/Details.jsx';
 
 const App = () => {
 
   const [view, setView] = useState('');
   const [formOneData, setFormOneData] = useState({name: '', email: '', password: ''});
-  const [formTwoData, setFormTwoData] = useState({address1: '', address2: '', city: '', state:'', zipcode: 0});
-  const [formThreeData, setFormThreeData] = useState({creditcard: 0, exp: 0, cvv: 0, billingZip: 0});
+  const [formTwoData, setFormTwoData] = useState({address1: '', address2: '', city: '', state:'', zipcode: ''});
+  const [formThreeData, setFormThreeData] = useState({creditcard: '', exp: '', cvv: '', billingZip: ''});
 
   const postData = () => {
     let fullData = {
@@ -19,14 +20,13 @@ const App = () => {
       ...formOneData,
       ...formTwoData,
       ...formThreeData
-    }
+    };
 
     console.log('client > fullData: ', fullData);
-    // console.log('client > postData > zipcode: ', zipcode);
 
     axios.post('/checkout', fullData)
       .then((response) => {
-        console.log('client > postData: ', response);
+        console.log();
       })
       .catch((error) => {
         console.log(error);
@@ -45,7 +45,10 @@ const App = () => {
         return <Form3 setView={setView} setFormThreeData={setFormThreeData} postData={postData}/>
       }
       if(view === 'confirmation') {
-        return <Confirmation formOneData={formOneData} formTwoData={formTwoData} formThreeData={formThreeData}/>
+        return <Confirmation formOneData={formOneData} formTwoData={formTwoData} formThreeData={formThreeData} postData={postData} setView={setView}/>
+      }
+      if(view === 'details') {
+        return <Details formOneData={formOneData} formTwoData={formTwoData} formThreeData={formThreeData}/>
       }
     }
   };

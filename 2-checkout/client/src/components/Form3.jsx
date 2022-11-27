@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 
-const Form3 = ({setView, setFormThreeData, postData}) => {
-
-  const [creditcard, setCreditcard] = useState(0);
-  const [exp, setExp] = useState();
-  const [cvv, setCvv] = useState();
-  const [billingZip, setBillingZip] = useState();
+const Form3 = ({setView, setFormThreeData}) => {
+  const [creditcard, setCreditcard] = useState('');
+  const [exp, setExp] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [billingZip, setBillingZip] = useState('');
 
   const onCreditcard = (e) => {
     setCreditcard(e.target.value);
@@ -31,8 +30,6 @@ const Form3 = ({setView, setFormThreeData, postData}) => {
       cvv: cvv,
       billingZip: billingZip
     });
-
-    postData();
 
     setView('confirmation');
   };
@@ -65,10 +62,10 @@ const Form3 = ({setView, setFormThreeData, postData}) => {
             </div>
             <div className='formLine'>
               <span>Billing Zipcode: </span>
-              <input type='' value={billingZip} onChange={onBillingZip}></input>
+              <input type='text' value={billingZip} onChange={onBillingZip}></input>
             </div>
             <div className='formLine'>
-              <input type='button' value='Purchase' onClick={setForm3}></input>
+              <input type='button' value='Submit' onClick={setForm3}></input>
             </div>
           </form>
         </div>

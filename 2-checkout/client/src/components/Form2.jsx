@@ -5,7 +5,7 @@ const Form2 = ({setView, setFormTwoData}) => {
   const [address2, setaddressTwo] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
-  const [zipcode, setZipcode] = useState(0);
+  const [zipcode, setZipcode] = useState('');
 
   const onAddress1 = (e) => {
     setAddressOne(e.target.value);

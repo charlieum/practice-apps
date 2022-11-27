@@ -1,23 +1,15 @@
-import React from "react";
+import React, {useState} from 'react';
 
-const Confirmation = ({formOneData, formTwoData, formThreeData, postData, setView}) => {
-
-  const onPostData = () => {
-    postData();
-    setView('details');
-  };
+const Details = ({formOneData, formTwoData, formThreeData}) => {
 
   return (
     <div className='formContainer'>
       <div className='formHeader'>
-        <h3>Confirm Purchase</h3>
+        <h3>Purchase Confirmation</h3>
       </div>
       <div className='formBody'>
         <div className='formLine'>
-          <input type='button' value='Purchase' onClick={onPostData}></input>
-        </div>
-        <div className='formLine'>
-            <u>Order Details</u>
+          <h3>Thank you <strong>{formOneData.name}</strong> for shopping at <strong>Charlie's Ugly Portraits!</strong></h3>
         </div>
         <div className='formLine'>
           <span><strong>Name:</strong></span>{formOneData.name}
@@ -46,4 +38,4 @@ const Confirmation = ({formOneData, formTwoData, formThreeData, postData, setVie
   );
 };
 
-export default Confirmation;
+export default Details;
